@@ -72,7 +72,7 @@
             今年もどうぞよろしくお願いいたします！
           </p>
           <div>
-            <a href="">
+            <a class="x-share" href="">
               <img src="./img/x.png" alt="Xアイコン" />
               <span>Xでシェアする</span>
             </a>
@@ -111,7 +111,7 @@
 
     const setXShareUrl = () => {
       const text = encodeURIComponent(
-        "新年謎2026を解き明かした！🎍\n答えは「ことしもよろしく」でした。\n"
+        "新年謎2026を解き明かした！🎍\n#謎解き https://2026nazo.vercel.app/\n"
       );
       const url = encodeURIComponent(location.href);
       xShare.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
