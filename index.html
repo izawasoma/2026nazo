@@ -16,7 +16,10 @@
       content="2026年最初の謎解きに挑戦しよう。"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="./img/nazo.png" />
+    <meta
+      property="og:image"
+      content="https://2026nazo.vercel.app/img/nazo.png"
+    />
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,10 +62,14 @@
         <button type="button" class="answer-button">送信</button>
       </div>
       <p class="answer-error" aria-live="polite"></p>
+
       <div class="modal-wrap is-hidden">
         <div class="modal-main">
           <h2>正解！</h2>
           <h3>解説</h3>
+          <div>
+            <img src="./img/answer.png" alt="解説画像">
+          </div>
           <p>
             答えは「ことしもよろしく」<br />
             まず、周囲の丸にイラストの名称を埋めていく。<br />
