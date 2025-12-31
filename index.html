@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO / OGP -->
+    <meta
+      name="description"
+      content="新年を記念した1問謎解きコンテンツ。Webと謎解きの要素を組み合わせた新年企画です。"
+    />
+    <meta property="og:title" content="新年謎2026" />
+    <meta
+      property="og:description"
+      content="2026年最初の謎解きに挑戦しよう。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./img/ogp.png" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <title>新年謎2026</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <h1 class="site-title">新年謎</h1>
+    </header>
+
+    <main class="content">
+      <h2 class="content-title">問題</h2>
+      <p class="content-text">
+        あけましておめでとうございます！<br />
+        昨年1年間は様々な謎解き制作やWeb制作に携わらせていただき、誠にありがとうございました。<br />
+        2026年の最初の謎として、1問謎解きを作成しましたので、ぜひ解いてみてください。
+      </p>
+
+      <div class="nazo-image">
+        <img src="./img/nazo.png" alt="新年謎問題" />
+      </div>
+
+      <div class="answer-form">
+        <input
+          type="text"
+          class="answer-input"
+          placeholder="答えを入力"
+          aria-label="答えを入力"
+        />
+        <button type="button" class="answer-button">送信</button>
+      </div>
+      <p class="answer-error" aria-live="polite"></p>
+      <div class="modal-wrap is-hidden">
+        <div class="modal-main">
+          <h2>正解！</h2>
+          <h3>解説</h3>
+          <p>
+            答えは「ことしもよろしく」<br />
+            まず、周囲の丸にイラストの名称を埋めていく。<br />
+            9つの丸に答えが入った後は、下に書かれたイラストの名称を線で繋いでいく。<br />
+            例えば、「杭(くい)」「稲」「ネジ」をつなぐと「コ」になっている。<br />
+            これをすべて繋いでいくと、「ことしもよろしく」となる。<br />
+            今年もどうぞよろしくお願いいたします！
+          </p>
+          <div>
+            <a href="">
+              <img src="./img/x.png" alt="Xアイコン" />
+              <span>Xでシェアする</span>
+            </a>
+          </div>
+          <button class="modal-close">閉じる</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">izawasoma</footer>
+  </body>
+
+  <script>
+    const input = document.querySelector(".answer-input");
+    const button = document.querySelector(".answer-button");
+    const errorText = document.querySelector(".answer-error");
+    const modal = document.querySelector(".modal-wrap");
+    const modalClose = document.querySelector(".modal-close");
+    const xShare = document.querySelector(".x-share");
+
+    const normalize = (str) => {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[ァ-ン]/g, (s) =>
+          String.fromCharCode(s.charCodeAt(0) - 0x60)
+        );
+    };
+
+    const correctAnswers = [
+      "ことしもよろしく",
+      "今年もよろしく",
+      "今年も宜しく",
+      "ことしも宜しく",
+    ].map(normalize);
+
+    const setXShareUrl = () => {
+      const text = encodeURIComponent(
+        "新年謎2026を解き明かした！🎍\n答えは「ことしもよろしく」でした。\n"
+      );
+      const url = encodeURIComponent(location.href);
+      xShare.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+    };
+
+    const checkAnswer = () => {
+      const value = normalize(input.value);
+
+      if (correctAnswers.includes(value)) {
+        setXShareUrl();
+        modal.classList.remove("is-hidden");
+        errorText.textContent = "";
+        input.classList.remove("is-error");
+      } else {
+        errorText.textContent = "不正解です";
+        input.classList.remove("is-error");
+        void input.offsetWidth; // アニメーション再発火
+        input.classList.add("is-error");
+      }
+    };
+
+    button.addEventListener("click", checkAnswer);
+
+    modalClose.addEventListener("click", () => {
+      modal.classList.add("is-hidden");
+    });
+  </script>
+</html>
