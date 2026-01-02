@@ -310,4 +310,47 @@ img {
   background: #ffffff;
   padding: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), inset 0 0 0 1px #e5e7eb;
+}
+
+.hint {
+  margin-top: 24px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  overflow: hidden;
+}
+.hint-toggle {
+  width: 100%;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+}
+.hint-toggle::after {
+  content: "＋";
+  position: absolute;
+  right: 16px;
+  transition: transform 0.3s;
+}
+.hint-toggle[aria-expanded=true]::after {
+  content: "－";
+}
+.hint-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  padding: 0 16px;
+}
+.hint-content p {
+  margin: 0;
+  padding-bottom: 16px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+.hint-content.is-open {
+  max-height: 300px;
 }/*# sourceMappingURL=style.css.map */

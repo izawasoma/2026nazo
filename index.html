@@ -70,6 +70,85 @@
       </div>
       <p class="answer-error" aria-live="polite"></p>
 
+      <div class="hint">
+        <button class="hint-toggle" aria-expanded="false">ヒント1</button>
+        <div class="hint-content">
+          <p>
+            まずは上の9つの丸に1文字ずつひらがなを書いて、イラストの名称がイラストの周りの4つの丸に入るようにひらがなを埋めていきましょう。<br />
+            このとき、ひらがなの埋める場所はバラバラでもOKですが、埋め方は1通りです。
+          </p>
+        </div>
+      </div>
+      <div class="hint">
+        <button class="hint-toggle" aria-expanded="false">ヒント2</button>
+        <div class="hint-content">
+          <p>
+            イラストはそれぞれ「くつした」「たいまつ」「下敷き」「種まき」です。
+          </p>
+        </div>
+      </div>
+      <div class="hint">
+        <button class="hint-toggle" aria-expanded="false">ヒント3</button>
+        <div class="hint-content">
+          <p>
+            イラストの読み方を埋めると<br />
+            <br />
+            くつい<br />
+            したま<br />
+            じきね<br />
+            <br />
+            となります。
+          </p>
+        </div>
+      </div>
+      <div class="hint">
+        <button class="hint-toggle" aria-expanded="false">ヒント4</button>
+        <div class="hint-content">
+          <p>
+            次は、下に書かれたイラスト群の意味を考えていきましょう。<br />
+            どのイラストもかな2文字で読むことができます。
+          </p>
+        </div>
+      </div>
+      <div class="hint">
+        <button class="hint-toggle" aria-expanded="false">ヒント5</button>
+        <div class="hint-content">
+          <p>
+            最初のブロックは「くい」「いね」「ねじ」<br />
+            次のブロックは「つき」「たま」<br />
+            その次のブロックは「くつ」「した」「いね」「ねじ」です。
+          </p>
+        </div>
+      </div>
+      <div class="hint">
+        <button class="hint-toggle" aria-expanded="false">ヒント6</button>
+        <div class="hint-content">
+          <p>
+            「くい」「いね」「ねじ」「つき」「たま」「くつ」「した」はいずれも、9つの丸に書き込んだひらがなです。
+          </p>
+        </div>
+      </div>
+      <div class="hint">
+        <button class="hint-toggle" aria-expanded="false">ヒント7</button>
+        <div class="hint-content">
+          <p>
+            例えば、最初のブロックは「くい」「いね」「ねじ」について、「く」と「い」、「い」と「ね」、「ね」と「じ」を線で結んでいくとどうなるでしょうか。
+          </p>
+        </div>
+      </div>
+      <div class="hint">
+        <button class="hint-toggle" aria-expanded="false">答え</button>
+        <div class="hint-content">
+          <p>
+            答えは「ことしもよろしく」<br />
+            まず、周囲の丸にイラストの名称を埋めていく。<br />
+            9つの丸に答えが入った後は、下に書かれたイラストの名称を線で繋いでいく。<br />
+            例えば、「杭(くい)」「稲」「ネジ」をつなぐと「コ」になっている。<br />
+            これをすべて繋いでいくと、「ことしもよろしく」となる。
+          </p>
+        </div>
+      </div>
+
       <div class="modal-wrap is-hidden">
         <div class="modal-main">
           <h2>正解！</h2>
@@ -151,6 +230,19 @@
 
     modalClose.addEventListener("click", () => {
       modal.classList.add("is-hidden");
+    });
+
+    const hintToggles = document.querySelectorAll(".hint-toggle");
+
+    hintToggles.forEach((toggle) => {
+      const hintContent = toggle.nextElementSibling;
+
+      toggle.addEventListener("click", () => {
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+        toggle.setAttribute("aria-expanded", String(!isOpen));
+        hintContent.classList.toggle("is-open");
+      });
     });
   </script>
 </html>
